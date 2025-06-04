@@ -10,14 +10,7 @@ const Games = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [initialized, setInitialized] = useState(false);
   
-  // Inicializar jogos no Firestore (apenas uma vez)
-  useEffect(() => {
-    if (!initialized) {
-      initializeGames()
-        .then(() => setInitialized(true))
-        .catch(error => console.error('Erro ao inicializar jogos:', error));
-    }
-  }, [initialized]);
+  
   
   // Filtrar jogos quando a lista de jogos mudar ou o filtro mudar
   useEffect(() => {
