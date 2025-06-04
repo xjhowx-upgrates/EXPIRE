@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Clock, Users, ArrowLeft } from 'lucide-react';
 import { Game } from '../components/ui/GameCard';
@@ -15,16 +15,17 @@ const GameDetails = () => {
     const fetchGame = async () => {
       try {
         setLoading(true);
-        const gamesRef = collection(db, 'games');
-        const q = query(gamesRef, where('id', '==', gameId));
-        const querySnapshot = await getDocs(q);
-        
-        if (!querySnapshot.empty) {
-          const gameData = querySnapshot.docs[0].data() as Game;
-          setGame(gameData);
+        if (!gameId) return;
+        const docRef = doc(db, 'games', gameId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setGame(docSnap.data() as Game);
+        } else {
+          setGame(null);
         }
       } catch (error) {
         console.error('Erro ao buscar detalhes do jogo:', error);
+        setGame(null);
       } finally {
         setLoading(false);
       }

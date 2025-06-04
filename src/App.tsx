@@ -29,6 +29,9 @@ function App() {
             <Route path="/sobre" element={<About />} />
             <Route path="/privacidade" element={<Privacy />} />
             <Route path="/termos" element={<Terms />} />
+            {/* Rotas diretas para games e leaderboard */}
+            <Route path="/games" element={<Games />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/app" element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="jogos" element={<Games />} />
