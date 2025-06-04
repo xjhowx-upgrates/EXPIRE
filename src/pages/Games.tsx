@@ -30,10 +30,24 @@ const Games = () => {
     }
   }, [games, activeFilter]);
 
+  // Log para debug
+  useEffect(() => {
+    console.log('Games carregados:', games);
+    if (games.length === 0 && !loading) {
+      console.warn('Nenhum jogo foi carregado do banco de dados!');
+    }
+  }, [games, loading]);
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-white">Jogos</h1>
-      
+      {/* Fallback para erro/dados vazios */}
+      {!loading && games.length === 0 && (
+        <div className="text-center text-red-400 font-bold py-6">
+          Erro: Nenhum jogo encontrado no banco de dados!<br />
+          Verifique se você está autenticado e se há jogos cadastrados no Firestore.
+        </div>
+      )}
       {loading ? (
         <div className="flex justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
