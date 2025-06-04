@@ -61,7 +61,10 @@ const GameCard = ({ game }: GameCardProps) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center text-gray-400">
             <Clock className="h-4 w-4 mr-1" />
-            <span>{game.minBet}-{game.maxBet} min</span>
+            <span>
+            {typeof game.minBet === 'number' ? game.minBet : 'N/A'}-
+            {typeof game.maxBet === 'number' ? game.maxBet : 'N/A'} min
+          </span>
           </div>
           
           <div className="flex items-center text-gray-400">
