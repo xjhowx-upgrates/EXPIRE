@@ -34,14 +34,8 @@ export const GameContext = createContext<GameContextType>({
   setCurrentVideoId: () => {},
 });
 
-// List of video IDs from the channel
-const videoIds = [
-  'dQw4w9WgXcQ', // Example YouTube video IDs
-  'jNQXAC9IVRw',
-  '9bZkp7q19f0',
-  'kJQP7kiw5Fk',
-  'fJ9rUzIMcZQ'
-];
+// Video de penalidade fixo
+const penaltyVideoId = 'IobwwOUJkFk';
 
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [games, setGames] = useState<Game[]>([]);
@@ -97,10 +91,8 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           totalLost: increment(amount),
           gamesPlayed: increment(1)
         });
-        
-        // If user loses, they get a random video to watch
-        const randomIndex = Math.floor(Math.random() * videoIds.length);
-        setCurrentVideoId(videoIds[randomIndex]);
+        // Sempre mostra o vídeo fixo ao perder
+        setCurrentVideoId(penaltyVideoId);
         setIsWatchingVideo(true);
       }
       

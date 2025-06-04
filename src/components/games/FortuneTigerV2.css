@@ -1,0 +1,139 @@
+/* FortuneTigerV2.css - Adaptado do seu slot original para React */
+
+.ftiger-root {
+  min-height: 100vh;
+  background: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Calibri', Arial, Helvetica, sans-serif;
+}
+
+.ftiger-stage1 {
+  background: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/capa2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.ftiger-logo {
+  width: 30%;
+  margin-bottom: 2rem;
+  z-index: 3;
+}
+
+.ftiger-btn {
+  background-color: rgb(195, 32, 182);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  border: solid 2px rgb(195 32 182);
+  box-shadow: 0 0 25px rgb(195, 32, 182);
+  padding: 0.7rem 3rem;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% { box-shadow: 0 0 25px rgb(195, 32, 182); }
+  50% { box-shadow: 0 0 40px rgb(195, 32, 182); }
+  100% { box-shadow: 0 0 25px rgb(195, 32, 182); }
+}
+
+.ftiger-stage2 {
+  background: rgba(0,0,0,0.85);
+  border-radius: 24px;
+  padding: 2rem 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ftiger-wallet {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ftiger-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.ftiger-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ftiger-symbol {
+  width: 60px;
+  height: 60px;
+  background: #222;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.ftiger-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ftiger-popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.ftiger-popup img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 0 30px #fff8;
+}
+
+@media (max-width: 600px) {
+  .ftiger-stage2 {
+    max-width: 98vw;
+    padding: 1.2rem 0.2rem;
+  }
+  .ftiger-slot {
+    gap: 0.5rem;
+  }
+  .ftiger-symbol {
+    width: 46px;
+    height: 46px;
+    font-size: 1.1rem;
+  }
+}

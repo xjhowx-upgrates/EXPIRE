@@ -1,0 +1,309 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  background: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Calibri", Arial, Helvetica, sans-serif;
+}
+
+.content {
+  height: 100%;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.stage1 {
+  background: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/capa2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.logo {
+  z-index: 3;
+  width: 30%;
+}
+
+.positionBtn {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: flex-start;
+  left: 0;
+  bottom: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  gap: 20px;
+}
+
+.start-button,
+.btnFim {
+  background-color: rgb(195, 32, 182);
+  text-shadow: rgb(195 32 182) 0px 1px 2px;
+  display: flex;
+  border-radius: 8px;
+  border: solid 2px rgb(195 32 182);
+  box-shadow: 0 0 25px rgb(195, 32, 182);
+  animation: shine 1.5s infinite;
+  transition: all;
+}
+
+.start-button-inner,
+.btnFim-inner {
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 100%, 0.5),
+    hsla(0, 0%, 100%, 0)
+  );
+  background-origin: border-box;
+  border: 0.87px solid hsla(0, 0%, 100%, 0.4);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  padding: 0.4rem 3rem;
+}
+
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 25px rgb(246, 91, 233);
+  }
+  50% {
+    box-shadow: 0 0 5px rgb(246, 91, 233), 0 0 25px rgb(246, 91, 233),
+      0 0 50px rgb(246, 91, 233), 0 0 100px rgb(246, 91, 233);
+  }
+  100% {
+    box-shadow: 0 0 25px rgb(246, 91, 233);
+  }
+}
+
+.stage2 {
+  display: block;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #670d0d;
+  width: 100%;
+  height: 100vh;
+  max-width: 570px;
+  overflow: hidden;
+  max-width: 0px;
+  max-height: 0px;
+}
+
+.video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  object-fit: cover;
+  object-position: center bottom;
+  margin-bottom: -4px;
+  z-index: 0;
+}
+
+.sorterSpace,
+.marquee,
+.total,
+.footer {
+  background-image: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/roll.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+  aspect-ratio: 533 / 439;
+  display: block;
+}
+
+.marquee {
+  background-image: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/marquee.png);
+  aspect-ratio: 570 / 101;
+  font-family: "Caveat Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 1rem;
+}
+
+.allmarquee {
+  overflow: hidden;
+  height: 97%;
+}
+
+.total {
+  background-image: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/total.png);
+  aspect-ratio: 570 / 61;
+  display: flex;
+  gap: 5px;
+  padding: 0 1.5%;
+}
+
+.total .input {
+  width: 33%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 0.7rem;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5%;
+  font-weight: 300;
+  padding-left: 5%;
+}
+
+.marqueeSpace {
+  width: calc(100% - 16%);
+  height: 82%;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0 4px 0;
+  left: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.marqueeSpace span {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-top: 100%;
+  animation: marqueeVertical 8s linear infinite;
+  background: -webkit-linear-gradient(#c1fbec, #348055);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  height: 100%;
+  padding-left: 10%;
+  filter: drop-shadow(-1px 0px 0px #fff) drop-shadow(0 2px 0px #2b3c42);
+}
+
+@keyframes marqueeVertical {
+  0% {
+    transform: translateY(100%); /* Começa de baixo */
+  }
+  100% {
+    transform: translateY(-100%); /* Vai até o topo */
+  }
+}
+
+.footer {
+  background-image: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/footer.png);
+  aspect-ratio: 570 / 332;
+  width: 100%;
+  height: 24%;
+  background-size: cover;
+  display: block;
+  text-align: center;
+  padding-top: 2%;
+  padding-left: 0.2%;
+  position: relative;
+}
+
+.stars {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  height: 100%;
+  max-height: 130px;
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/stars.gif);
+  mix-blend-mode: color-dodge;
+  filter: contrast(1.4);
+  opacity: 0;
+}
+
+.stars.anim {
+  animation: sonarStars 1s 2 linear;
+}
+
+@keyframes sonarStars {
+  from {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.spin {
+  border-radius: 50%;
+  background: red;
+  border: none;
+  width: 19%;
+  aspect-ratio: 1;
+  background-image: url(https://divirta-se.club/lander/fiel---fortune-tiger-simulador/assets/btnspin.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: relative;
+  z-index: 3;
+  margin-left: -9.5%;
+  left: 50%;
+}
+
+.spin::before,
+.spin.rotateFaster::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  border: solid 2px rgb(255, 221, 0);
+  top: -2px;
+  left: -2px;
+  pointer-events: none;
+  animation: rotateSpin 2s linear infinite;
+}
+
+@keyframes rotateSpin {
+  100% {
+    transform: rotate(-360deg); /* Modificado para rotação anti-horária */
+  }
+}
