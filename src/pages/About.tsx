@@ -10,7 +10,7 @@ const About = () => {
           <div className="flex justify-between items-center">
             <Link to="/" className="flex items-center">
               <Clock className="h-8 w-8 text-purple-500" />
-              <span className="ml-2 text-2xl font-bold text-white">MinuteBet</span>
+              <span className="ml-2 text-2xl font-bold text-white">EXPIRE</span>
             </Link>
             <div className="flex items-center space-x-4">
               <Link to="/" className="text-gray-300 hover:text-white flex items-center">
@@ -24,18 +24,18 @@ const About = () => {
 
       <main className="pt-32 pb-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-8">Sobre a MinuteBet</h1>
+          <h1 className="text-4xl font-bold text-white mb-8">Sobre a EXPIRE</h1>
           
           <div className="prose prose-invert max-w-none">
             <p className="text-xl text-gray-300 mb-8">
-              A MinuteBet nasceu com uma missão única: revolucionar o conceito de
+              A EXPIRE nasceu com uma missão única: revolucionar o conceito de
               entretenimento online criando uma plataforma onde o tempo, não o dinheiro,
               é a moeda principal.
             </p>
 
             <h2 className="text-2xl font-bold text-white mt-12 mb-6">Nossa História</h2>
             <p className="text-gray-300 mb-8">
-              Fundada em 2025, a MinuteBet surgiu da ideia de criar uma alternativa
+              Fundada em 2025, a EXPIRE surgiu da ideia de criar uma alternativa
               segura e divertida às plataformas de apostas tradicionais. Nosso objetivo
               é proporcionar toda a emoção dos jogos de azar sem os riscos financeiros
               associados.
@@ -47,7 +47,7 @@ const About = () => {
                 <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Aposte Minutos</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Aposte EXPIREos</h3>
                 <p className="text-gray-300">
                   Use seus minutos como moeda virtual para apostar em diversos jogos
                   emocionantes.
@@ -117,7 +117,7 @@ const About = () => {
                 Pronto para começar?
               </h2>
               <p className="text-gray-300 mb-6">
-                Junte-se a milhares de jogadores e comece sua jornada na MinuteBet.
+                Junte-se a milhares de jogadores e comece sua jornada na EXPIRE.
               </p>
               <Link
                 to="/register"
@@ -133,7 +133,7 @@ const About = () => {
       <footer className="bg-gray-800 border-t border-gray-700 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} MinuteBet. Todos os direitos reservados.
+            © {new Date().getFullYear()} EXPIRE. Todos os direitos reservados.
           </p>
         </div>
       </footer>

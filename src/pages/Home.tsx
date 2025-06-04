@@ -29,7 +29,7 @@ const Home: React.FC = () => {
             Aposte seu <span className="text-purple-400">tempo</span>, não seu dinheiro
           </h1>
           <p className="mt-6 max-w-lg text-xl text-gray-300">
-            Bem-vindo ao MinuteBet — aqui você aposta minutos da sua vida, não dinheiro. Perdeu? Assista a um vídeo para recuperar seu tempo!
+            Bem-vindo ao EXPIRE — aqui você aposta minutos da sua vida, não dinheiro. Perdeu? Assista a um vídeo para recuperar seu tempo!
           </p>
           <div className="mt-10 flex gap-4">
             <Link
