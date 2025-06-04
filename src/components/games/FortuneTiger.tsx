@@ -8,16 +8,26 @@ interface FortuneTigerProps {
   setBetAmount: (amount: number) => void;
 }
 
-// Slot machine symbols
-const symbols = [
-  { id: 'tigre', value: 5, image: '/images/games/tiger.jpg' },
-  { id: 'dragao', value: 4, image: '/images/games/dragon.jpg' },
-  { id: 'moeda', value: 3, image: '/images/games/coin.jpg' },
-  { id: 'lanterna', value: 2, image: '/images/games/lantern.jpg' },
-  { id: 'cereja', value: 1, image: '/images/games/cherry.jpg' }
+import { symbolImages, FortuneTigerSymbol } from './FortuneTigerSymbols';
+
+// Slot machine symbols com nomes e imagens corretos
+const symbols: { id: FortuneTigerSymbol; value: number }[] = [
+  { id: 'tigre', value: 5 },
+  { id: 'dragão', value: 4 },
+  { id: 'moeda', value: 3 },
+  { id: 'lanterna', value: 2 },
+  { id: 'cereja', value: 1 },
 ];
 
-const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmount }) => {
+const FortuneTiger: React.FC<FortuneTigerProps> = ({
+  game,
+  betAmount,
+  setBetAmount,
+}: {
+  game: any;
+  betAmount: number;
+  setBetAmount: (amount: number) => void;
+}) => {
   const { userProfile } = useAuth();
   const { betMinutes } = useGame();
   const [isSpinning, setIsSpinning] = useState(false);
@@ -29,11 +39,11 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
   const [message, setMessage] = useState<string | null>(null);
   const [winAmount, setWinAmount] = useState<number | null>(null);
 
-  const getRandomSymbol = () => {
+  const getRandomSymbol = (): { id: FortuneTigerSymbol; value: number } => {
     return symbols[Math.floor(Math.random() * symbols.length)];
   };
 
-  const spin = async () => {
+  const spin = async (): Promise<void> => {
     if (isSpinning) return;
     if (!userProfile || userProfile.minutes < betAmount) {
       setMessage('Minutos insuficientes para fazer esta aposta!');
@@ -117,15 +127,15 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
     <div className="bg-gray-900 rounded-lg p-6">
       <div className="bg-gradient-to-r from-red-900 to-yellow-900 p-4 rounded-lg mb-6">
         <div className="grid grid-cols-3 gap-2">
-          {reels.map((reel, reelIndex) => (
+          {reels.map((reel: { id: FortuneTigerSymbol; value: number }[], reelIndex: number) => (
             <div key={reelIndex} className="bg-black rounded-lg p-2 flex flex-col items-center">
-              {reel.map((symbol, symbolIndex) => (
+              {reel.map((symbol: { id: FortuneTigerSymbol; value: number }, symbolIndex: number) => (
                 <div
                   key={`${reelIndex}-${symbolIndex}`}
                   className={`p-1 mb-2 ${isSpinning ? 'animate-pulse' : ''}`}
                 >
                   <img
-                    src={symbol.image}
+                    src={symbolImages[symbol.id]}
                     alt={symbol.id}
                     className="w-16 h-16 object-cover rounded"
                   />
@@ -182,7 +192,7 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
           {symbols.map(symbol => (
             <div key={symbol.id} className="flex items-center">
               <img
-                src={symbol.image}
+                src={symbolImages[symbol.id]}
                 alt={symbol.id}
                 className="w-8 h-8 object-cover rounded mr-2"
               />
