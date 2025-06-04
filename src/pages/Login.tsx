@@ -18,7 +18,7 @@ const Login = () => {
       setError('');
       setLoading(true);
       await login(email, password);
-      navigate('/');
+      navigate('/app');
     } catch (err) {
       setError('Falha ao entrar. Por favor, verifique suas credenciais.');
       console.error(err);
@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   if (currentUser) {
-    return <Navigate to="/" />;
+    return <Navigate to="/app" />;
   }
 
   return (
