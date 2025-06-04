@@ -123,7 +123,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// CSS para animação fade-in (opcional, pode ser colocado em index.css)
-// .animate-fade-in { animation: fadeIn 0.5s; }
-// @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
