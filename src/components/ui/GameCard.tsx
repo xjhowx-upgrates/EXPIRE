@@ -1,57 +1,65 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Game } from '../../contexts/GameContext'; // Certifique-se que o caminho para GameContext está correto
+import { Game } from '../../contexts/GameContext'; // Verifique se o caminho para GameContext está correto
 
 interface GameCardProps {
   game: Game;
 }
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
-  // Verificação essencial: se o objeto game não existir ou não tiver um ID, não renderiza nada.
-  if (!game || !game.id) {
-    console.warn('GameCard: game ou game.id está undefined. Card não renderizado. Game data:', game);
-    return null; 
+  // Verificações defensivas para todas as propriedades acessadas
+  const id = game?.id ?? 'unknown-id';
+  const name = game?.name ?? 'Nome Indisponível';
+  const imageUrl = game?.imageUrl ?? '/images/placeholder.png'; // Imagem placeholder
+  const description = game?.description ?? 'Descrição não disponível.';
+  
+  // Garante que minBet e maxBet são números antes de chamar toString() ou usá-los
+  const minBet = game?.minBet;
+  const maxBet = game?.maxBet;
+  const displayMinBet = typeof minBet === 'number' ? minBet.toString() : 'N/A';
+  const displayMaxBet = typeof maxBet === 'number' ? maxBet.toString() : 'N/A';
+
+  // Se o jogo for inválido ou não tiver ID, exibe uma mensagem de erro
+  if (!game || !id || id === 'unknown-id') {
+    console.error('GameCard: Recebeu jogo inválido ou sem ID:', game);
+    return (
+      <div className="bg-gray-800 p-4 rounded-lg shadow-lg text-center text-red-500">
+        Erro: Dados do jogo inválidos.
+      </div>
+    );
   }
 
-  const isFortuneGame = game.name === 'Fortune Tiger';
-  // Usando game.id que agora sabemos que existe por causa da verificação acima.
-  const linkPath = isFortuneGame ? `/app/jogos/detalhes/${game.id}` : `/app/jogos/${game.id}`;
-
-  // Valores padrão para evitar erros se forem undefined
-  const gameName = game.name || "Nome Indisponível";
-  // Lembre-se de adicionar uma imagem chamada placeholder-image.png na sua pasta public
-  // ou use um link de uma imagem placeholder online válida.
-  const gameImageUrl = game.imageUrl || "/placeholder-image.png"; 
-
-  const displayMinBet = typeof game.minBet === 'number' ? game.minBet.toString() : 'N/A';
-  const displayMaxBet = typeof game.maxBet === 'number' ? game.maxBet.toString() : 'N/A';
-
   return (
-    <Link to={linkPath} className="game-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
-      <img 
-        src={gameImageUrl} 
-        alt={`Imagem do jogo ${gameName}`}
-        className="w-full h-48 object-cover" 
-      />
-      <div className="p-4 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-white mb-2 truncate">{gameName}</h3>
-        
-        {/* Se você usa game.description, pode adicionar uma verificação similar: */}
-        {/* {game.description && (
-          <p className="text-gray-400 text-sm mb-2 flex-grow">{game.description}</p>
-        )} */}
-        
-        <div className="mt-auto">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-sm text-yellow-400">{displayMinBet}-{displayMaxBet} min</span>
-            {/* Se você usa game.popularity, pode adicionar uma verificação similar: */}
-            {/* {typeof game.popularity === 'number' && (
-              <span className="text-sm text-gray-300">Popularidade: {game.popularity}</span>
-            )} */}
+    <Link to={`/app/game/${id}`} className="block group">
+      <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col">
+        <div className="w-full h-48 overflow-hidden">
+          <img 
+            src={imageUrl} 
+            alt={name} 
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              // Fallback para links de imagem quebrados
+              const target = e.target as HTMLImageElement;
+              target.onerror = null; // Evita loop de erro se o placeholder também falhar
+              target.src = '/images/placeholder.png'; // Caminho para uma imagem placeholder local
+            }}
+          />
+        </div>
+        <div className="p-4 flex flex-col flex-grow">
+          <h3 className="text-xl font-semibold text-white mb-2 truncate" title={name}>
+            {name}
+          </h3>
+          <p className="text-gray-400 text-sm mb-3 h-16 overflow-y-auto flex-grow"> {/* Permite scroll se a descrição for longa */}
+            {description}
+          </p>
+          <div className="mt-auto flex justify-between items-center text-sm pt-2">
+            <span className="text-green-400">
+              Min: <span className="font-bold">{displayMinBet}</span>
+            </span>
+            <span className="text-red-400">
+              Max: <span className="font-bold">{displayMaxBet}</span>
+            </span>
           </div>
-          <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
-            Jogar
-          </button>
         </div>
       </div>
     </Link>
