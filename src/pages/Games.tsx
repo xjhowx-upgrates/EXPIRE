@@ -32,7 +32,7 @@ const Games = () => {
   }, [games, loading]);
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-[#181c2a] space-y-6">
       <h1 className="text-3xl font-bold text-white">Jogos</h1>
       {/* Fallback para erro/dados vazios */}
       {!loading && games.length === 0 && (
