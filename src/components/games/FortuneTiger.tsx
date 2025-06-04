@@ -10,11 +10,11 @@ interface FortuneTigerProps {
 
 // Slot machine symbols
 const symbols = [
-  { id: 'tiger', value: 5, image: 'https://via.placeholder.com/80?text=Tiger' },
-  { id: 'dragon', value: 4, image: 'https://via.placeholder.com/80?text=Dragon' },
-  { id: 'coin', value: 3, image: 'https://via.placeholder.com/80?text=Coin' },
-  { id: 'lantern', value: 2, image: 'https://via.placeholder.com/80?text=Lantern' },
-  { id: 'cherry', value: 1, image: 'https://via.placeholder.com/80?text=Cherry' }
+  { id: 'tigre', value: 5, image: '/images/games/tiger.jpg' },
+  { id: 'dragao', value: 4, image: '/images/games/dragon.jpg' },
+  { id: 'moeda', value: 3, image: '/images/games/coin.jpg' },
+  { id: 'lanterna', value: 2, image: '/images/games/lantern.jpg' },
+  { id: 'cereja', value: 1, image: '/images/games/cherry.jpg' }
 ];
 
 const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmount }) => {
@@ -36,7 +36,7 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
   const spin = async () => {
     if (isSpinning) return;
     if (!userProfile || userProfile.minutes < betAmount) {
-      setMessage('Not enough minutes to place this bet!');
+      setMessage('Minutos insuficientes para fazer esta aposta!');
       return;
     }
 
@@ -73,15 +73,15 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
           const result = await betMinutes(game.id, betAmount);
           
           if (result) {
-            // Force a win scenario
-            const winningSymbol = symbols[Math.floor(Math.random() * 3)]; // More likely to get higher value symbols
+            // Forçar cenário de vitória
+            const winningSymbol = symbols[Math.floor(Math.random() * 3)]; // Mais chance de símbolo de maior valor
             const winMultiplier = winningSymbol.value;
             const win = betAmount * winMultiplier;
             
             setWinAmount(win);
-            setMessage(`You won ${win} minutes!`);
+            setMessage(`Você ganhou ${win} minutos!`);
             
-            // Show matching symbols for a win
+            // Mostrar símbolos iguais para vitória
             const winningReels = [
               [winningSymbol, winningSymbol, winningSymbol],
               [winningSymbol, winningSymbol, winningSymbol],
@@ -89,8 +89,8 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
             ];
             setReels(winningReels);
           } else {
-            // Keep random symbols for a loss
-            setMessage('You lost! Watch a video to get more minutes.');
+            // Manter símbolos aleatórios para derrota
+            setMessage('Você perdeu! Assista um vídeo para ganhar mais minutos.');
           }
           
           setIsSpinning(false);
@@ -172,12 +172,12 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
               : 'bg-purple-600 text-white hover:bg-purple-700'
           }`}
         >
-          {isSpinning ? 'Spinning...' : 'Spin'}
+          {isSpinning ? 'Girando...' : 'Girar'}
         </button>
       </div>
 
       <div className="bg-gray-800 p-3 rounded-lg">
-        <h3 className="text-white font-medium mb-2">Winning Combinations</h3>
+        <h3 className="text-white font-medium mb-2">Combinações Premiadas</h3>
         <div className="grid grid-cols-2 gap-2 text-sm">
           {symbols.map(symbol => (
             <div key={symbol.id} className="flex items-center">
@@ -187,7 +187,7 @@ const FortuneTiger: React.FC<FortuneTigerProps> = ({ game, betAmount, setBetAmou
                 className="w-8 h-8 object-cover rounded mr-2"
               />
               <span className="text-gray-300">
-                3x {symbol.id} = {symbol.value}x bet
+                3x {symbol.id} = {symbol.value}x aposta
               </span>
             </div>
           ))}

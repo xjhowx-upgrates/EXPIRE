@@ -154,7 +154,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
 
   const startGame = async () => {
     if (!userProfile || userProfile.minutes < betAmount) {
-      setMessage('Not enough minutes to place this bet!');
+      setMessage('Minutos insuficientes para fazer esta aposta!');
       return;
     }
     
@@ -175,7 +175,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
     
     const winnings = Math.floor(betAmount * multiplier);
     setWinAmount(winnings);
-    setMessage(`Cashed out at ${multiplier.toFixed(2)}x! You won ${winnings} minutes.`);
+    setMessage(`Retirada em ${multiplier.toFixed(2)}x! Você ganhou ${winnings} minutos.`);
     
     // Simulate a win
     await betMinutes(game.id, betAmount);
@@ -200,7 +200,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
           {multiplier.toFixed(2)}x
         </div>
         <div className="bg-gray-800 px-3 py-1 rounded text-gray-300 text-sm">
-          {isPlaying ? 'In Progress' : isCrashed ? 'Crashed' : 'Ready'}
+          {isPlaying ? 'Em Progresso' : isCrashed ? 'Crashou' : 'Pronto'}
         </div>
       </div>
       
@@ -221,7 +221,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
       
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-gray-400 text-sm mb-1">Bet Amount</label>
+          <label className="block text-gray-400 text-sm mb-1">Valor da Aposta</label>
           <div className="flex items-center">
             <button 
               onClick={decreaseBet} 
@@ -244,7 +244,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
         </div>
         
         <div>
-          <label className="block text-gray-400 text-sm mb-1">Auto Cash Out</label>
+          <label className="block text-gray-400 text-sm mb-1">Retirada Automática</label>
           <input
             type="number"
             value={autoExitValue}
@@ -267,7 +267,7 @@ const Crash: React.FC<CrashProps> = ({ game, betAmount, setBetAmount }) => {
               : 'bg-purple-600 text-white hover:bg-purple-700'
           }`}
         >
-          {isCrashed ? 'Play Again' : 'Start Game'}
+          {isCrashed ? 'Jogar Novamente' : 'Iniciar Jogo'}
         </button>
         
         <button 

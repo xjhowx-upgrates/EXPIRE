@@ -121,9 +121,12 @@ const GameDetails = () => {
             </ul>
           </div>
           
-          <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors text-lg font-medium">
+          <Link
+            to={`/app/jogos/${gameId}`}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors text-lg font-medium text-center block"
+          >
             Jogar Agora
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -71,7 +71,7 @@ const Roulette: React.FC<RouletteProps> = ({ game, betAmount, setBetAmount }) =>
   const handleSpin = async () => {
     if (isSpinning || !selectedBet) return;
     if (!userProfile || userProfile.minutes < betAmount) {
-      setMessage('Not enough minutes to place this bet!');
+      setMessage('Minutos insuficientes para fazer esta aposta!');
       return;
     }
 
@@ -120,9 +120,9 @@ const Roulette: React.FC<RouletteProps> = ({ game, betAmount, setBetAmount }) =>
       
       // Force the result based on the backend
       if (result) {
-        setMessage(`You won ${betAmount} minutes!`);
+        setMessage(`Você ganhou ${betAmount} minutos!`);
       } else {
-        setMessage('You lost! Watch a video to get more minutes.');
+        setMessage('Você perdeu! Assista um vídeo para ganhar mais minutos.');
       }
 
       setTimeout(() => {
@@ -190,7 +190,7 @@ const Roulette: React.FC<RouletteProps> = ({ game, betAmount, setBetAmount }) =>
       {result !== null && resultColor && (
         <div className="text-center mb-4">
           <p className="text-lg text-white">
-            Result: <span className={`font-bold ${resultColor === 'red' ? 'text-red-500' : resultColor === 'black' ? 'text-gray-300' : 'text-green-500'}`}>
+            Resultado: <span className={`font-bold ${resultColor === 'red' ? 'text-red-500' : resultColor === 'black' ? 'text-gray-300' : 'text-green-500'}`}>
               {result} ({resultColor})
             </span>
           </p>
@@ -209,35 +209,35 @@ const Roulette: React.FC<RouletteProps> = ({ game, betAmount, setBetAmount }) =>
           className={`p-2 rounded-lg ${selectedBet === 'red' ? 'bg-red-600 text-white' : 'bg-red-900 text-red-100 hover:bg-red-800'} ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isSpinning}
         >
-          Red
+          Vermelho
         </button>
         <button 
           onClick={() => handleBetSelect('black')} 
           className={`p-2 rounded-lg ${selectedBet === 'black' ? 'bg-gray-800 text-white' : 'bg-gray-700 text-gray-100 hover:bg-gray-600'} ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isSpinning}
         >
-          Black
+          Preto
         </button>
         <button 
           onClick={() => handleBetSelect('green')} 
           className={`p-2 rounded-lg ${selectedBet === 'green' ? 'bg-green-600 text-white' : 'bg-green-900 text-green-100 hover:bg-green-800'} ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isSpinning}
         >
-          Green (0)
+          Verde (0)
         </button>
         <button 
           onClick={() => handleBetSelect('odd')} 
           className={`p-2 rounded-lg ${selectedBet === 'odd' ? 'bg-purple-600 text-white' : 'bg-purple-900 text-purple-100 hover:bg-purple-800'} ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isSpinning}
         >
-          Odd
+          Ímpar
         </button>
         <button 
           onClick={() => handleBetSelect('even')} 
           className={`p-2 rounded-lg ${selectedBet === 'even' ? 'bg-purple-600 text-white' : 'bg-purple-900 text-purple-100 hover:bg-purple-800'} ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={isSpinning}
         >
-          Even
+          Par
         </button>
         <button 
           onClick={() => handleBetSelect('low')} 
@@ -286,7 +286,7 @@ const Roulette: React.FC<RouletteProps> = ({ game, betAmount, setBetAmount }) =>
               : 'bg-purple-600 text-white hover:bg-purple-700'
           }`}
         >
-          {isSpinning ? 'Spinning...' : 'Spin'}
+          {isSpinning ? 'Girando...' : 'Girar'}
         </button>
       </div>
     </div>
