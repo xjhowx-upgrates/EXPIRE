@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node scripts/generateVersion.js",
+    "postbuild": "node scripts/generateVersion.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "init-games": "npx ts-node --esm src/scripts/initializeSlotGames.ts"
