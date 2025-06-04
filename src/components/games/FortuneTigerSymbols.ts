@@ -3,16 +3,10 @@
 
 export type FortuneTigerSymbol = 'tigre' | 'dragão' | 'moeda' | 'lanterna' | 'cereja';
 
-import tigre from '../../slots-exemplo/Fortune-tiger/img/tigre.png';
-import dragão from '../../slots-exemplo/Fortune-tiger/img/dragão.png';
-import moeda from '../../slots-exemplo/Fortune-tiger/img/moeda.png';
-import lanterna from '../../slots-exemplo/Fortune-tiger/img/lanterna.png';
-import cereja from '../../slots-exemplo/Fortune-tiger/img/cereja.png';
-
 export const symbolImages: Record<FortuneTigerSymbol, string> = {
-  tigre,
-  dragão,
-  moeda,
-  lanterna,
-  cereja,
+  tigre: '/slots-exemplo/Fortune-tiger/img/tigre.png',
+  dragão: '/slots-exemplo/Fortune-tiger/img/dragão.png',
+  moeda: '/slots-exemplo/Fortune-tiger/img/moeda.png',
+  lanterna: '/slots-exemplo/Fortune-tiger/img/lanterna.png',
+  cereja: '/slots-exemplo/Fortune-tiger/img/cereja.png',
 };
