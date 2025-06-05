@@ -46,29 +46,58 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        console.log("GameContext: Iniciando busca de jogos..."); // Log Adicionado
+        console.log("GameContext: Iniciando busca de jogos...");
         const gamesCollection = collection(db, 'games');
         const gamesSnapshot = await getDocs(gamesCollection);
-        console.log(`GameContext: Encontrados ${gamesSnapshot.docs.length} documentos de jogos.`); // Log Adicionado
+        
+        if (gamesSnapshot.empty) {
+          console.warn('GameContext: Nenhum jogo encontrado no banco de dados.');
+          setGames([]);
+          return;
+        }
+
+        console.log(`GameContext: Encontrados ${gamesSnapshot.docs.length} documentos de jogos.`);
 
         const gamesList = gamesSnapshot.docs.map((docSnapshot, index) => {
-          const rawData = docSnapshot.data();
-          // Log detalhado dos dados brutos de cada documento
-          console.log(`GameContext: Dados brutos do Firestore para o jogo ${index} (ID: ${docSnapshot.id}):`, JSON.stringify(rawData, null, 2));
-          
-          const gameData = {
-            id: docSnapshot.id,
-            ...rawData
-          };
-          // Log dos dados mapeados antes da asserção de tipo
-          console.log(`GameContext: Dados mapeados para o jogo ${index} (ID: ${docSnapshot.id}) antes da asserção:`, JSON.stringify(gameData, null, 2));
-          return gameData;
-        }) as Game[];
+          try {
+            const rawData = docSnapshot.data();
+            
+            // Validação básica dos dados do jogo
+            if (!rawData.name || !rawData.type) {
+              console.warn(`GameContext: Jogo ${docSnapshot.id} está com dados incompletos:`, rawData);
+              return null;
+            }
+            
+            const gameData = {
+              id: docSnapshot.id,
+              name: rawData.name || 'Jogo sem nome',
+              description: rawData.description || 'Descrição não disponível',
+              minBet: typeof rawData.minBet === 'number' ? rawData.minBet : 0,
+              maxBet: typeof rawData.maxBet === 'number' ? rawData.maxBet : 0,
+              imageUrl: rawData.imageUrl || '',
+              type: ['roulette', 'crash', 'slots'].includes(rawData.type) 
+                ? rawData.type as 'roulette' | 'crash' | 'slots' 
+                : 'slots', // Default para slots se o tipo for inválido
+              popularity: typeof rawData.popularity === 'number' ? rawData.popularity : 0,
+            };
+            
+            return gameData;
+          } catch (error) {
+            console.error(`GameContext: Erro ao processar jogo ${docSnapshot.id}:`, error);
+            return null;
+          }
+        }).filter(Boolean) as Game[]; // Remove entradas nulas
         
-        console.log('GameContext: Lista final de jogos (gamesList) a ser definida no estado:', JSON.stringify(gamesList, null, 2)); // Log Adicionado
+        if (gamesList.length === 0) {
+          console.error('GameContext: Nenhum jogo válido encontrado após o processamento.');
+        } else {
+          console.log(`GameContext: ${gamesList.length} jogos carregados com sucesso.`);
+        }
+        
         setGames(gamesList);
       } catch (error) {
         console.error('GameContext: Erro ao buscar jogos:', error);
+        // Em produção, você pode querer mostrar uma mensagem amigável para o usuário
       } finally {
         setLoading(false);
       }
