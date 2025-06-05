@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Game } from '../../types';
+import { Game } from '../../contexts/GameContext';
 
 interface GameCardProps {
   game: Game;
@@ -17,10 +17,13 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
     );
   }
 
+  // Placeholder base64 para fallback
+  const placeholderImage = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgZmlsbD0iIzFhMjEzMiI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4M2E4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSI+Q2FycmVnYW5kbyBpbWFnZW0uLi48L3RleHQ+PC9zdmc+';
+  
   const {
     id = 'unknown-id',
     name = 'Nome Indisponível',
-    imageUrl = '/images/placeholder.png',
+    imageUrl = placeholderImage,
     description = 'Descrição não disponível.',
     minBet = 0,
     maxBet = 0
@@ -40,9 +43,13 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src = '/images/placeholder.png';
+              // Evita loop de erro se o fallback também falhar
+              if (target.src !== placeholderImage) {
+                target.onerror = null;
+                target.src = placeholderImage;
+              }
             }}
+            loading="lazy"
           />
         </div>
         <div className="p-4 flex flex-col flex-grow">
