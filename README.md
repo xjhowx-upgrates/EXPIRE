@@ -111,6 +111,3 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 **xjhowx** - [GitHub](https://github.com/xjhowx)
 
----
-
-Desenvolvido com ❤️ por xjhowx.
